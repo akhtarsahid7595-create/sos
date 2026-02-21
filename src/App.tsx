@@ -7,7 +7,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Search, Copy, Check, Diamond, Heart, MessageCircle, Shield, Users, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SCRIPTS_DATA } from './data/scripts';
-import ChatBot from './components/ChatBot';
 
 interface ScriptCategory {
   title: string;
@@ -515,7 +514,6 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-      <ChatBot />
     </div>
   );
 }
