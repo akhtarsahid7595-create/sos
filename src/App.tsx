@@ -6,6 +6,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Search, Copy, Check, Diamond, Heart, MessageCircle, Shield, Users, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { SCRIPTS_DATA } from './data/scripts';
 import ChatBot from './components/ChatBot';
 
 interface ScriptCategory {
@@ -18,7 +19,7 @@ interface ScriptsData {
 }
 
 export default function App() {
-  const [data, setData] = useState<ScriptsData | null>(null);
+  const [data, setData] = useState<ScriptsData | null>(SCRIPTS_DATA);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showFavorites, setShowFavorites] = useState(false);
@@ -34,22 +35,8 @@ export default function App() {
   const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
 
-  const fetchScripts = () => {
-    fetch('/api/scripts')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch scripts');
-        return res.json();
-      })
-      .then(setData)
-      .catch(err => {
-        console.error('Failed to load scripts:', err);
-        setLoadError('Could not load scripts. Please check your connection or try again later.');
-      });
-  };
-
   useEffect(() => {
-    fetchScripts();
-
+    // Load data from localStorage
     const savedCount = localStorage.getItem('diamondCount');
     if (savedCount) setDiamondCount(parseInt(savedCount, 10));
 
@@ -60,16 +47,49 @@ export default function App() {
     if (savedUser) setUser(JSON.parse(savedUser));
   }, []);
 
-  // Sync data to backend when it changes
-  useEffect(() => {
-    if (token) {
-      fetch('/api/sync', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, diamondCount, favorites })
-      });
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = (formData.get('email') as string).trim();
+    const password = (formData.get('password') as string).trim();
+
+    // Simple local auth for SPA compatibility
+    const users = JSON.parse(localStorage.getItem('localUsers') || '[]');
+    const existingUser = users.find((u: any) => u.email === email && u.password === password);
+
+    if (existingUser) {
+      const mockToken = `token-${Date.now()}`;
+      setToken(mockToken);
+      setUser({ username: email, displayName: existingUser.displayName || email.split('@')[0] });
+      
+      localStorage.setItem('userToken', mockToken);
+      localStorage.setItem('userData', JSON.stringify({ username: email, displayName: existingUser.displayName || email.split('@')[0] }));
+      
+      setView('home');
+      setAuthError('');
+    } else {
+      setAuthError('Invalid email or password');
     }
-  }, [diamondCount, favorites, token]);
+  };
+
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = (formData.get('email') as string).trim();
+    const password = (formData.get('password') as string).trim();
+
+    const users = JSON.parse(localStorage.getItem('localUsers') || '[]');
+    if (users.find((u: any) => u.email === email)) {
+      setAuthError('Email already exists');
+      return;
+    }
+
+    users.push({ email, password, displayName: email.split('@')[0] });
+    localStorage.setItem('localUsers', JSON.stringify(users));
+    
+    setView('login');
+    setAuthError('');
+  };
 
   const toggleFavorite = (text: string) => {
     const newFavorites = favorites.includes(text)
@@ -77,58 +97,6 @@ export default function App() {
       : [...favorites, text];
     setFavorites(newFavorites);
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
-  };
-
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const username = (formData.get('email') as string).trim();
-    const password = (formData.get('password') as string).trim();
-
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-
-    const result = await res.json();
-    if (result.success) {
-      setToken(result.token);
-      setUser({ username: result.user.username, displayName: result.user.displayName });
-      setDiamondCount(result.user.diamondCount);
-      setFavorites(result.user.favorites);
-      
-      localStorage.setItem('userToken', result.token);
-      localStorage.setItem('userData', JSON.stringify({ username: result.user.username, displayName: result.user.displayName }));
-      localStorage.setItem('diamondCount', result.user.diamondCount.toString());
-      localStorage.setItem('favorites', JSON.stringify(result.user.favorites));
-      
-      setView('home');
-      setAuthError('');
-    } else {
-      setAuthError(result.message);
-    }
-  };
-
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const username = (formData.get('email') as string).trim();
-    const password = (formData.get('password') as string).trim();
-
-    const res = await fetch('/api/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-
-    const result = await res.json();
-    if (result.success) {
-      setView('login');
-      setAuthError('');
-    } else {
-      setAuthError(result.message);
-    }
   };
 
   const handleLogout = () => {
