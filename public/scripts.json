@@ -1,0 +1,79 @@
+{
+  "categories": {
+    "DistantPartner": {
+      "title": "When He's Distant/Cold",
+      "scripts": [
+        "I notice you've been quieter lately, and I miss our connection. Is everything okay on your end?",
+        "I feel the distance growing, and I want us to bridge it together. Can we talk?",
+        "I've been feeling a bit disconnected from you lately. I'd love to hear about your day when you have a moment.",
+        "I value our communication so much, and it feels a bit off right now. I'm here when you're ready to share.",
+        "I'm missing our usual rhythm. Let's find a time to catch up properly soon.",
+        "I want to make sure I'm supporting you well. You seem a bit distant—is there anything you'd like to talk about?",
+        "I cherish our bond, and I'm feeling a bit lonely in it today. Sending you love.",
+        "I'm noticing a shift in our energy. I'm choosing to stay open and wait for us to find our flow again.",
+        "I miss the warmth of our conversations. I'm looking forward to our next deep dive.",
+        "I'm here, holding space for us. Whenever you're ready to lean back in, I'm ready to receive you."
+      ]
+    },
+    "PostArgument": {
+      "title": "After an Argument",
+      "scripts": [
+        "I've had some time to reflect on our talk. I'm sorry for my part in the tension and I want to move forward with love.",
+        "I value our relationship more than being right. Can we try to see each other's perspective again?",
+        "I'm still feeling a bit tender after our disagreement, but I want you to know I still love you deeply.",
+        "I'd like to revisit our conversation when we're both feeling calmer. I want to understand you better.",
+        "I'm choosing to let go of the frustration because our peace is more important to me.",
+        "I'm sorry things got heated. I want to learn how we can handle these moments with more grace together.",
+        "I'm here and I'm committed to us. Let's talk about how we can heal this together.",
+        "I miss being on the same team. Can we find our way back to that today?",
+        "I've been thinking about what you said. I want to find a middle ground that respects both our needs.",
+        "I love you, and I'm ready to put this behind us. Let's focus on our connection now."
+      ]
+    },
+    "FeelingUnheard": {
+      "title": "Feeling Unheard",
+      "scripts": [
+        "I've been feeling like my needs aren't quite landing lately. I'd love for us to have a heart-to-heart soon.",
+        "It's important to me that I feel understood by you. Can we talk about how I've been feeling?",
+        "I'm struggling to feel heard in our recent conversations. I value your perspective and want to share mine too.",
+        "I feel a bit invisible when I share my day. I'd love it if we could focus more on each other's experiences.",
+        "I'm sharing this because I care about us: I'm feeling a bit disconnected and unheard right now.",
+        "I want to feel like a priority in your life. Can we discuss how we can make more space for my feelings?",
+        "I'm feeling a bit lonely in my thoughts. I'd love to feel your support and understanding today.",
+        "I value our honesty. Right now, I'm feeling like my voice isn't quite reaching you.",
+        "I'm looking for a bit more validation in our talks. It helps me feel safe and connected to you.",
+        "I want us to be each other's safe haven. I'm feeling like I need a bit more of your listening ear right now."
+      ]
+    },
+    "SettingBoundaries": {
+      "title": "Setting Boundaries",
+      "scripts": [
+        "I value our time together, but I need some space for myself tonight to recharge. I'll check in tomorrow.",
+        "I'm not comfortable with how we're communicating right now. Let's take a break and talk when we're both ready.",
+        "I need to prioritize my well-being right now. I won't be able to talk until later this evening.",
+        "I love our connection, but I need to set a limit on our late-night calls so I can rest properly.",
+        "I'm feeling overwhelmed. I need us to slow down our communication for a bit so I can process things.",
+        "I'm choosing to step away from this conversation for now. I want us to speak with respect and love.",
+        "I need to be clear about my needs: I require more consistent check-ins to feel secure in our LDR.",
+        "I'm setting a boundary for myself: I won't engage in talks that feel disrespectful or dismissive.",
+        "I value my peace. I'm taking some time offline today and will be back when I feel more centered.",
+        "I'm learning to honor my limits. Right now, I need some quiet time to myself."
+      ]
+    },
+    "MissingEachOther": {
+      "title": "Missing Each Other",
+      "scripts": [
+        "The distance feels heavy today, but my love for you is even heavier. I'm counting down the days.",
+        "I'm missing your presence so much. Sending you a virtual hug until I can give you a real one.",
+        "I'm thinking of our last visit and it's keeping me going. I miss you more than words can say.",
+        "Even though we're apart, you're always in my heart. I'm so grateful for our connection.",
+        "I'm feeling the gap between us today. I'm looking forward to our next call to feel close again.",
+        "I miss the simple things—like just sitting in silence with you. Can't wait for that again.",
+        "The miles are many, but our love is stronger. I'm missing you deeply today.",
+        "I'm holding onto our memories until we can make new ones. I miss you, my love.",
+        "I'm so proud of us for navigating this distance. I miss you and I'm so lucky to have you.",
+        "I'm sending you all my love across the miles. I can't wait to be in your arms again."
+      ]
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-sage: #A8D5BA;
+  --color-sage-dark: #7AB893;
+  --color-cream: #F8F4E6;
+  --color-rose: #E8B4BC;
+  --color-ink: #4A4A4A;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+}
+
+.diamond-popup-overlay {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+}
+
+.script-card {
+  @apply border-l-4 border-sage bg-white p-4 rounded-r-xl shadow-sm transition-all duration-300;
+}
+
+.btn-category {
+  @apply w-full h-20 flex items-center justify-center text-center p-4 rounded-xl font-serif text-lg text-white transition-all duration-300 shadow-sm active:scale-95;
+  background: linear-gradient(to bottom right, #F8F4E6, #A8D5BA);
+  color: #4A4A4A;
+}
+
+.btn-category:hover {
+  @apply shadow-md;
+  background: linear-gradient(to bottom right, #A8D5BA, #7AB893);
+  color: white;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.pulse-load {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-sage rounded-full;
+}
